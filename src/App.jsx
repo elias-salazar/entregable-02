@@ -28,13 +28,13 @@ function App() {
 
   const image = data.weather?.[0].main;
   image == "Clouds"
-    ? (document.body.style.backgroundImage="url(./public/images/sky-clouds-background.jpg)")
+    ? (document.body.style.backgroundImage="url(images/sky-clouds-background.jpg)")
     : image == "Rain"
-    ? (document.body.style.backgroundImage="url(./public/images/rain-drops-on-the-window.jpg)")
+    ? (document.body.style.backgroundImage="url(images/rain-drops-on-the-window.jpg)")
     : image == "Snow"
-    ? (document.body.style.backgroundImage="url(./public/images/beautiful-frost-pattern-on-window.jpg)")
+    ? (document.body.style.backgroundImage="url(images/beautiful-frost-pattern-on-window.jpg)")
     : image == "Sunny"
-    ? (document.body.style.backgroundImage="url(./public/images/v923-katie-04b.jpg)")
+    ? (document.body.style.backgroundImage="url(images/v923-katie-04b.jpg)")
     : "green";
 
   const [degreesUnits, setDegreesUnits] = useState(true);

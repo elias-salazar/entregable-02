@@ -26,19 +26,15 @@ function App() {
     }, params);
   };
 
-  const clouds = `url("./public/images/sky-clouds-background.jpg")`;
-  const rain = `url("./public/images/rain-drops-on-the-window.jpg")`;
-  const snow = `url("./public/images/beautiful-frost-pattern-on-window.jpg")`;
-  const sunny = `url("./public/images/v923-katie-04b.jpg")`;
   const image = data.weather?.[0].main;
   image == "Clouds"
-    ? (document.body.style = `background-image:${clouds}`)
+    ? (document.body.style = `background-image: url("./public/images/sky-clouds-background.jpg")`)
     : image == "Rain"
-    ? (document.body.style = `background-image: ${rain}`)
+    ? (document.body.style = `background-image:url("./public/images/rain-drops-on-the-window.jpg")`)
     : image == "Snow"
-    ? (document.body.style = `background-image: ${snow}`)
+    ? (document.body.style = `background-image:  url("./public/images/beautiful-frost-pattern-on-window.jpg")`)
     : image == "Sunny"
-    ? (document.body.style = `background-image: ${sunny}`)
+    ? (document.body.style = `background-image: url("./public/images/v923-katie-04b.jpg")`)
     : "green";
 
   const [degreesUnits, setDegreesUnits] = useState(true);

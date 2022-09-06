@@ -33,14 +33,16 @@ function App() {
     ? (document.body.style.backgroundImage="url(images/rain-drops-on-the-window.jpg)")
     : image == "Snow"
     ? (document.body.style.backgroundImage="url(images/beautiful-frost-pattern-on-window.jpg)")
-    : image == "Sunny"
-    ? (document.body.style.backgroundImage="url(images/v923-katie-04b.jpg)")
-    : "green";
+    : image == "Clear"
+    && (document.body.style.backgroundImage="url(images/v923-katie-04b.jpg)")
+   
 
   const [degreesUnits, setDegreesUnits] = useState(true);
   const changeDegrees = () => {
     setDegreesUnits(!degreesUnits);
+
   };
+  console.log(data);
   return (
     <div className="App box-opacity">
       <div id="loader" className="loader">

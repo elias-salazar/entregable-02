@@ -9,26 +9,27 @@ function App() {
     navigator.geolocation.getCurrentPosition(success);
 
     function success(pos) {
+      load(1000);
       const crd = pos.coords;
-      load();
+
       axios
         .get(
           `https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=58ef7241d8f28f936dc358b99959b7ad&units=metric`
         )
         .then((res) => setData(res.data));
     }
-    const load = () => {
-      const loader = document.getElementById("loader");
-      setTimeout(() => {
-        loader.classList.add("hide");
-      }, 3000);
-    };
   }, []);
+  const load = (params) => {
+    const loader = document.getElementById("loader");
+    setTimeout(() => {
+      loader.classList.add("hide");
+    }, params);
+  };
 
-  const clouds = "public/images/sky-clouds-background.jpg";
-  const rain = "public/images/rain-drops-on-the-window.jpg";
-  const snow = "public/images/beautiful-frost-pattern-on-window.jpg";
-  const sunny = "public/images/v923-katie-04b.jpg";
+  const clouds = "./public/images/sky-clouds-background.jpg";
+  const rain = "./public/images/rain-drops-on-the-window.jpg";
+  const snow = "./public/images/beautiful-frost-pattern-on-window.jpg";
+  const sunny = "./public/images/v923-katie-04b.jpg";
   const image = data.weather?.[0].main;
   image == "Clouds"
     ? (document.body.style = `background-image: url(${clouds}`)

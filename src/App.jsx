@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
@@ -7,28 +7,28 @@ function App() {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
+
     function success(pos) {
       const crd = pos.coords;
-
+      load();
       axios
         .get(
           `https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=58ef7241d8f28f936dc358b99959b7ad&units=metric`
         )
         .then((res) => setData(res.data));
     }
-    load();
+    const load = () => {
+      const loader = document.getElementById("loader");
+      setTimeout(() => {
+        loader.classList.add("hide");
+      }, 3000);
+    };
   }, []);
 
-  const load = () => {
-    const loader = document.getElementById("loader");
-    setTimeout(() => {
-      loader.classList.add("hide");
-    }, 3000);
-  };
-  const clouds = "src/assets/images/sky-clouds-background.jpg";
-  const rain = "src/assets/images/rain-drops-on-the-window.jpg";
-  const snow = "src/assets/images/beautiful-frost-pattern-on-window.jpg";
-  const sunny = "src/assets/images/v923-katie-04b.jpg";
+  const clouds = "public/images/sky-clouds-background.jpg";
+  const rain = "public/images/rain-drops-on-the-window.jpg";
+  const snow = "public/images/beautiful-frost-pattern-on-window.jpg";
+  const sunny = "public/images/v923-katie-04b.jpg";
   const image = data.weather?.[0].main;
   image == "Clouds"
     ? (document.body.style = `background-image: url(${clouds}`)
@@ -36,7 +36,9 @@ function App() {
     ? (document.body.style = `background-image: url(${rain}`)
     : image == "Snow"
     ? (document.body.style = `background-image: url(${snow}`)
-    : (document.body.style = `background-image: url(${sunny}`);
+    : image == "Sunny"
+    ? (document.body.style = `background-image: url(${sunny}`)
+    : "green";
 
   const [degreesUnits, setDegreesUnits] = useState(true);
   const changeDegrees = () => {
@@ -56,7 +58,7 @@ function App() {
         </div>
         <div className="icon">
           <img
-            src={`http://openweathermap.org/img/wn/${data.weather?.[0].icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${data.weather?.[0].icon}@2x.png`}
             alt=""
           />
         </div>
